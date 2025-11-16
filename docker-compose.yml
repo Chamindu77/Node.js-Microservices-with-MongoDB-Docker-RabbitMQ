@@ -1,0 +1,62 @@
+version: '3.9'
+
+services:
+  mongo:
+    image: mongo:7
+    container_name: mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_DATABASE: users
+    volumes:
+      - mongo-data:/data/db
+  
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    restart: always
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+  user-service:
+    build: ./user-service
+    container_name: user-service
+    restart: always
+    ports:
+      - "5000:5000"
+    environment:
+      PORT: 5000
+      MONGO_URL: mongodb://mongo:27017/users
+    depends_on:
+      - mongo
+
+  task-service:
+    build: ./task-service
+    container_name: task-service
+    restart: always
+    ports:
+      - "5001:5001"
+    environment:
+      PORT: 5001
+      MONGO_URL: mongodb://mongo:27017/tasks
+    depends_on:
+      - mongo
+      - rabbitmq
+
+  notification-service:
+      build: ./notification-service
+      container_name: notification-service
+      restart: always
+      ports:
+        - "5002:5002"
+      environment:
+        PORT: 5002
+        RABBITMQ_URL: amqp://rabbitmq:5672
+      depends_on:
+        - mongo
+        - rabbitmq
+
+volumes:
+  mongo-data:

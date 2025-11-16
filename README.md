@@ -1,6 +1,6 @@
 # Node.js-Microservices-with-MongoDB-Docker-RabbitMQ
 
-<img width="4406" height="2797" alt="Untitled design" src="https://github.com/user-attachments/assets/5dfc2d2b-09f3-42e7-88e1-ca73bde86b5f" />
+<img width="1410" height="895" alt="Untitled design (1)" src="https://github.com/user-attachments/assets/5b6959fd-cf84-446b-84a7-352ca78601a1" />
 
 <img width="928" height="892" alt="Screenshot 2025-11-16 152555" src="https://github.com/user-attachments/assets/5b94af7a-ceeb-4dc0-8020-25dfb2fbed34" />
 
